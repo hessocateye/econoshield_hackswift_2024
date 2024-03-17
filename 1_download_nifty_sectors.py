@@ -20,11 +20,14 @@ sector_tickers = {
     'Real Estate': '^CNXREALTY',  # NIFTY Realty
     'ConsumerDurables': 'NIFTY_CONSR_DURBL.NS',  # NIFTY Consumer Durables
     'Media and Entertainment': '^CNXMEDIA',  # NIFTY Media
-    # 'Power Generation and Distribution': '^NSEPOWER',  # NIFTY Energy
-    # 'Transportation and Logistics': '^NSEAUTO',  # NIFTY Auto
-    # 'Agriculture and Agrochemicals': '^NSEBSE',  # NIFTY BSE
-    # 'Insurance': '^NSEINSURANCE',  # NIFTY Financial Services
-    'Hospitality and Tourism': '^NSEBANK',  # NIFTY Bank (for lack of dedicated index)
+    #'Power Generation and Distribution': '^NSEPOWER',  # NIFTY Energy
+    #'Transportation and Logistics': '^NSEAUTO',  # NIFTY Auto
+    #'Agriculture and Agrochemicals': '^NSEBSE',  # NIFTY BSE
+    #'Insurance': '^NSEINSURANCE',  # NIFTY Financial Services
+    #'Hospitality and Tourism': '^NSEBANK',  # NIFTY Bank (for lack of dedicated index)
+    #'NIFTY Midcap NSE': 'NIFTY_MIDCAP_100.NS',
+    #'SBI Nifty Smallcap 250 index fund': '0P0001PR8B.BO',
+
 }
 
 # Download stock data from Yahoo Finance
