@@ -1,0 +1,9 @@
+1.
+Manually download NIFTY sectorian indices from https://www.niftyindices.com/reports/historical-data
+The various sectarian indices are defined in https://www.niftyindices.com/indices/equity/sectoral-indices/
+
+2.
+Download GDP of all countries from World economic outlook database
+https://www.imf.org/en/Publications/WEO/weo-database/2023/October/
+Download entire database using the 'Entire dataset' link.
+You should get a 9MB Excel file.
