@@ -2,6 +2,14 @@
 Manually download NIFTY sectorian indices from https://www.niftyindices.com/reports/historical-data
 The various sectarian indices are defined in https://www.niftyindices.com/indices/equity/sectoral-indices/
 
+ERRATA
+In NIFTY_REALTY file downloaded frin Nifty sectarian indices: 
+the first few entries correspond to some data in 2014 instead of 2024.
+From 2-May-2014 to 26-May-2014
+This is weird. I removed them manually from "notepad".
+NOTE that: If you save a CSV from XL, it may change the data format of certain fields.
+           Hence using notepad to save a CSV file is a better option.
+
 2.
 Download GDP of all countries from World economic outlook database
 https://www.imf.org/en/Publications/WEO/weo-database/2023/October/

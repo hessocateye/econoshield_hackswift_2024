@@ -59,7 +59,7 @@ class nifty_sectoral_data:
         df = df.sort_values(by = 'Date', ascending=True)
         assert df[['Date']].duplicated().sum() == 0
         full_date_range = pd.date_range(df['Date'].min(), df['Date'].max(), freq='D')
-        print(full_date_range)
+        #print(full_date_range)
         df = df.set_index('Date', drop=True)
         df = df.reindex(full_date_range)
         df = df.interpolate(method='time')
