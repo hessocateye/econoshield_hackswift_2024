@@ -1,6 +1,18 @@
 import streamlit as st
 import pandas as pd 
 import plotly.graph_objects as go
+import utils.data_utils as du
+
+st.set_page_config(layout='wide')
+
+
+c = du.nifty_sectoral_data('./resources')
+df = c.get_all_nifty_indices()  #This one gets a Dataframe with date as index and NIFTY index names as columns
+nifty_index_names = c.get_nifty_index_names()  #gets all names of index as a list
+#nifty_auto_df = c.get_nifty_index('NIFTY AUTO')  #Returns a dataframe with details about NIFTY_AUTO
+## NOTE: get_nifty_index() returns open, close, high, etc.. all columns about the NIFTY index
+## NOTE: However, get_all_nifty_indices() returns Close prices as per the Column name that are NIFTY indices
+#st.write(nifty_index_names)
 
 st.title(':orange[ECON]O:green[SHIELD]')
 
@@ -12,28 +24,42 @@ with st.sidebar:
         st.slider('GDP forecast',min_value=-30,max_value=30,value=0,step=1,key=country)
 
 
-df = pd.DataFrame(
-{
-        'A': [1,2,3,4,5,6],
-        'B': [3.0, 4.3, 45.4, 33.34, 45.3, 5.6]
-    }
-)
+def make_rainbow(los):
+    return [':rainbow[{}]'.format(s) for s in los]
 
-#
-# TODO:
-# Using plotly Scatter chart, plot A in x-axis and B in y-axis
-# You acccess df['B'] to specify values in column B and so on.
-#
+lot=st.tabs([":rainbow[OVERALL SECTOR PERFORMANCE]"] + make_rainbow(nifty_index_names))
 
-fig=go.Figure()
+def plot_time_series(df,x,cols,fig):
+    if x is None:
+        # We will use the index as the column
+        df = df.copy()
+        x = df.index.name
+        df = df.reset_index(drop=False)
 
-fig.add_trace(
-    go.Scatter(
-        x=df['A'],
-        y=df['B'],
-        line=dict(color='darkorange',width=3)
-    )
-)
+    if fig is None:
+        fig=go.Figure()
+    
+    for var_col in cols:
+        fig.add_trace(
+            go.Scatter(
+                x=df[x],
+                y=df[var_col],
+                name=var_col,
+                line=dict(width=2)
+            )
+        )
+    fig.add_vline(x='2022-02-01',line_color='red',line_dash='dot')
+    fig.add_vline(x='2020-03-01',line_color='green')
+    fig.add_vrect(x0='2020-01-01',x1='2020-12-31',line_color='gold',line_dash='dashdot')
+    fig.update_layout(width=800,height=800)
+    return fig
 
-st.plotly_chart(fig)
+for index, name in enumerate(nifty_index_names):
+    with lot[index+1]:
+        fig=plot_time_series(df, None, [name], fig=None)
+        st.plotly_chart(fig)
+
+with lot[0]:
+    fig=plot_time_series(df, None, list(df.columns), fig=None)
+    st.plotly_chart(fig)
 
