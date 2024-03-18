@@ -95,4 +95,5 @@ class weo_data:
                 df = this_df 
             else:
                 df = df.merge(this_df, left_index=True, right_index=True, how='outer')
+        df.index.name='year'
         return df
