@@ -63,5 +63,6 @@ class nifty_sectoral_data:
         df = df.set_index('Date', drop=True)
         df = df.reindex(full_date_range)
         df = df.interpolate(method='time')
+        df.index.name='Date'
         return df
             
