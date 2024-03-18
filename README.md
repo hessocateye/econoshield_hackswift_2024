@@ -1,5 +1,5 @@
 # econoshield_hackswift_2024
-Panacea for the investors' dilemma
+Panacea for the Indian investors' dilemma
 
 # Steps to run
 1. Create a virtual environment if needed and activate it.
