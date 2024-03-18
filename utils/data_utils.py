@@ -65,4 +65,34 @@ class nifty_sectoral_data:
         df = df.interpolate(method='time')
         df.index.name='Date'
         return df
-            
+
+class weo_data:
+    def __init__(self, location):
+        self.location = location
+        df = pd.read_excel(self.location + '/WEO/WEOOct2023all.xlsx', engine='openpyxl')
+        gdp_df = df[df['WEO Subject Code'] == 'NGDPD'].copy()
+        assert len(gdp_df[gdp_df['Country'].duplicated()]) == 0
+        self.gdp_df = gdp_df
+        self.weo_df = df
+        return
+    
+    def gdp(self, country):
+        this_df = self.gdp_df[self.gdp_df['Country'] == country]
+        rdf = this_df[[col for col in this_df.columns if isinstance(col,int)]].copy()
+        assert len(rdf)==1 
+        for col in rdf:
+            rdf[col] = rdf[col].astype(float)
+        rdf.index = [country]
+        return rdf 
+
+    def gdp_all(self):
+        countries = list(self.gdp_df['Country'].unique())
+        df = None
+        for country in countries:
+            this_df = self.gdp(country)
+            this_df = this_df.T
+            if df is None:
+                df = this_df 
+            else:
+                df = df.merge(this_df, left_index=True, right_index=True, how='outer')
+        return df
