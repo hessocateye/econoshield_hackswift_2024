@@ -24,7 +24,7 @@ for nifty_index in nifty_df.columns:
     nifty_index_df = nifty_df[[nifty_index]]
     # Nifty index has daily data; we need yearly because GDP is published only yearly
     # Perhaps, with some diligence and time, we could collect Quarterly GDP data
-    # But not time now as it is a hackathon
+    # But no time now as it is a hackathon
     nifty_yearly_df = nifty_index_df.resample('Y').mean()
     nifty_yearly_df['year'] = nifty_yearly_df.index.to_series().apply(lambda x: x.year)
     nifty_yearly_df = nifty_yearly_df.set_index('year', drop=True)
