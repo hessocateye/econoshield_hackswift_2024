@@ -1,14 +1,14 @@
 
 # From: https://www.indiantradeportal.in/vs.jsp?id=0,25,45,858,859
 top_indian_exports = [
-    'United States',
+    #'United States',
     'United Arab Emirates',
-    'China',
+    #'China',
     'Bangladesh',
     'Netherlands',
     'Singapore',
     'Hong Kong SAR',
-    'United Kingdom',
+    #'United Kingdom',
     'Belgium',
     'Germany',
     'Nepal',
@@ -30,9 +30,9 @@ top_indian_exports = [
 
 # From: https://www.indiantradeportal.in/vs.jsp?lang=0&id=0,263,273
 top_indian_imports = [
-    'China',
+    #'China',
     'United Arab Emirates',
-    'United States',
+    #'United States',
     'Saudi Arabia',
     'Iraq',
     'Switzerland',
@@ -52,6 +52,9 @@ top_indian_imports = [
     'Russia',
     'Thailand',
     'Vietnam',
-    'United Kingdom',
+    #'United Kingdom',
     'Oman'
 ]
+
+def get_indian_trade_partners():
+    return ['United States', 'United Kingdom', 'China'] + sorted(list(set(top_indian_exports + top_indian_imports)))
