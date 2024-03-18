@@ -77,8 +77,10 @@ class weo_data:
     
     def gdp(self, country):
         this_df = self.gdp_df[self.gdp_df['Country'] == country]
-        rdf = this_df[[col for col in this_df.columns if isinstance(col,int)]]
+        rdf = this_df[[col for col in this_df.columns if isinstance(col,int)]].copy()
         assert len(rdf)==1 
+        for col in rdf:
+            rdf[col] = rdf[col].astype(float)
         rdf.index = [country]
         return rdf 
 
